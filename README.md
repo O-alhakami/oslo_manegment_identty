@@ -65,5 +65,6 @@ Configure a rewrite from `/*` to `/index.html` with status `200` for client-side
 - The AES key is held only in application memory and is never sent to or persisted by the API. Each saved item uses a fresh 12-byte AES-GCM IV.
 - The server cannot recover a vault if its master password is lost. Losing the password means losing access to encrypted vault contents.
 - Email and item category are metadata visible to the server. This starter does not include account recovery, MFA, backups, refresh tokens, or a formal security audit. Use HTTPS in production and protect database backups.
+- Production PostgreSQL connections use TLS. Certificate verification is disabled for compatibility with providers that use self-signed certificates; traffic remains encrypted, but the server certificate is not authenticated. Prefer configuring and verifying your database provider's CA certificate when one is available.
 - A compromised browser, malicious extension, or compromised frontend deployment can access the unlocked vault. Review and harden deployment and supply-chain controls before handling sensitive production data.
 
